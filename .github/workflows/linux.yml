@@ -105,7 +105,7 @@ jobs:
 
       - name: Bundle
         run: |-
-          tar -cvf ~/artifact.tar build
+          zip -r build/*
           
       - uses: actions/upload-release-asset@v1.0.1
         env:
