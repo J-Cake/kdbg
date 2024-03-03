@@ -102,14 +102,18 @@ jobs:
           release_name: <tofill>
           draft: true
           prerelease: false
+
+      - name: Bundle
+        run: |-
+          tar -cvf build ~/artifact.tar
           
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/kdbg
-          asset_name: kdbg.elf
+          asset_path: ~/artifact.tar
+          asset_name: build.tar
           asset_content_type: application/zip
   
       - uses: eregon/publish-release@v1
